@@ -2,3 +2,5 @@
 /*/*.ctxt
 /*/README.TXT
 /*/project.greenfoot
+.gitignore
+.project
