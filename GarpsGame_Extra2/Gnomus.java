@@ -26,25 +26,19 @@ public class Gnomus extends Actor {
     }
     
     protected void movement() {
-        if (Greenfoot.isKeyDown("D")) {
-            setRotation(0);
-            move(3);
-            if (objectCollision() || atWorldEdge()) {move(-3);}
-        }
-        if (Greenfoot.isKeyDown("A")) {
-            setRotation(180);
-            move(3);
-            if (objectCollision() || atWorldEdge()) {move(-3);}
-        }
-        if (Greenfoot.isKeyDown("W")) {
-            setRotation(270);
-            move(3);
-            if (objectCollision() || atWorldEdge()) {move(-3);}
-        }
-        if (Greenfoot.isKeyDown("S")) {
-            setRotation(90);
-            move(3);
-            if (objectCollision() || atWorldEdge()) {move(-3);}
+        if (Greenfoot.isKeyDown("right")) {setRotation(0);}
+        if (Greenfoot.isKeyDown("left")) {setRotation(180);}
+        if (Greenfoot.isKeyDown("up")) {setRotation(270);}
+        if (Greenfoot.isKeyDown("down")) {setRotation(90);}
+        if (Greenfoot.isKeyDown("up") && Greenfoot.isKeyDown("right")) {setRotation(315);}
+        if (Greenfoot.isKeyDown("up") && Greenfoot.isKeyDown("left")) {setRotation(225);}
+        if (Greenfoot.isKeyDown("down") && Greenfoot.isKeyDown("right")) {setRotation(45);}
+        if (Greenfoot.isKeyDown("down") && Greenfoot.isKeyDown("left")) {setRotation(135);}
+        
+        if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
+        || Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("down")) {
+            move(5);
+            if (objectCollision() || atWorldEdge()) {move(-5);}
         }
     }
     
@@ -74,7 +68,6 @@ public class Gnomus extends Actor {
             setImage(noImg);
             isGnomusDead = true;
         }
-        else {isGnomusDead = false;}
     }
     public boolean isGnomusDead() {
         return isGnomusDead;

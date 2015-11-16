@@ -37,27 +37,19 @@ public class Goarp extends Actor {
     }
     
     protected void movement() {
-        if (Greenfoot.isKeyDown("right")) {
-            setImage(imageRight);
-            setRotation(0);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("left")) {
-            setImage(imageLeft);
-            setRotation(180);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("up")) {
-            setImage(imageRight);
-            setRotation(270);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("down")) {
-            setImage(imageRight);
-            setRotation(90);
+        if (Greenfoot.isKeyDown("right")) {setRotation(0);}
+        if (Greenfoot.isKeyDown("left")) {setRotation(180);}
+        if (Greenfoot.isKeyDown("up")) {setRotation(270);}
+        if (Greenfoot.isKeyDown("down")) {setRotation(90);}
+        if (Greenfoot.isKeyDown("up") && Greenfoot.isKeyDown("right")) {setRotation(315);}
+        if (Greenfoot.isKeyDown("up") && Greenfoot.isKeyDown("left")) {setRotation(225);}
+        if (Greenfoot.isKeyDown("down") && Greenfoot.isKeyDown("right")) {setRotation(45);}
+        if (Greenfoot.isKeyDown("down") && Greenfoot.isKeyDown("left")) {setRotation(135);}
+        
+        if (Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
+        || Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("down")) {
+            if (Greenfoot.isKeyDown("left")) {setImage(imageLeft);}
+            else {setImage(imageRight);}
             move(5);
             if (foundRock() || atWorldEdge()) {move(-5);}
         }

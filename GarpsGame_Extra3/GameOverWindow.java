@@ -62,9 +62,9 @@ public class GameOverWindow extends TextToImage {
         GreenfootImage background = new GreenfootImage(550, 300);
         if (scoreGarp > scoreGoarp) {background.setColor(new Color(0, 150, 200));}
         if (scoreGarp == scoreGoarp) {background.setColor(new Color(200, 200, 0));}
-        if (scoreGarp < scoreGoarp) {background.setColor(new Color(150, 0, 200));}
-        if (scoreGarp == 10) {background.setColor(new Color(0, 255, 100));}
-        if (scoreGoarp == 10) {background.setColor(new Color(255, 0, 200));}
+        if (scoreGarp < scoreGoarp) {background.setColor(new Color(255, 0, 100));}
+        if (scoreGarp == 10) {background.setColor(new Color(0, 255, 50));}
+        if (scoreGoarp == 10) {background.setColor(new Color(150, 0, 200));}
         background.setTransparency(75);
         background.fillRect(0, 0, 550, 300);
         image.drawImage(background, 0, 0);
@@ -109,9 +109,9 @@ public class GameOverWindow extends TextToImage {
         image.drawString(text5, image.getWidth()/2-(int)(dim5.getWidth()/2)+1, image.getHeight()/2+11);
         if (scoreGarp > scoreGoarp) {image.setColor(new Color(0, 150, 200));}
         if (scoreGarp == scoreGoarp) {image.setColor(new Color(200, 200, 0));}
-        if (scoreGarp < scoreGoarp) {image.setColor(new Color(150, 0, 200));}
-        if (scoreGarp == 10) {image.setColor(new Color(0, 255, 100));}
-        if (scoreGoarp == 10) {image.setColor(new Color(255, 0, 200));}
+        if (scoreGarp < scoreGoarp) {image.setColor(new Color(255, 0, 100));}
+        if (scoreGarp == 10) {image.setColor(new Color(0, 255, 50));}
+        if (scoreGoarp == 10) {image.setColor(new Color(150, 0, 200));}
         image.drawString(text5, image.getWidth()/2-(int)(dim5.getWidth()/2)-1, image.getHeight()/2+9);
         
         image.setFont(new Font("Arial", Font.BOLD, 16));
@@ -146,7 +146,6 @@ public class GameOverWindow extends TextToImage {
             "That's cute.",
         };
         String text = randomJoke[(int)(Math.random()*randomJoke.length)];
-        
         return text;
     }
     

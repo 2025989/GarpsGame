@@ -34,9 +34,9 @@ public class GoarpGemScore extends TextToImage {
         
         //draw string into image
         image.scale(dim.width, dim.height);
-        image.setColor(new Color(200, 200, 200));
+        image.setColor(new Color(225, 225, 225));
         image.drawString(scoreText, 1, dim.height+1);
-        image.setColor(new Color(0, 0, 0));
+        image.setColor(new Color(150, 0, 125));
         image.drawString(scoreText, 0, dim.height);
         setImage(image);
         

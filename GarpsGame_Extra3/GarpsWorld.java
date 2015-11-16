@@ -18,7 +18,6 @@ public class GarpsWorld extends World {
         // Create a new world with 700x500 cells with a cell size of 1x1 pixels.
         super(700, 500, 1);
         populateTheWorld();
-        prepare();
     }
 
     public void started() {
@@ -26,7 +25,6 @@ public class GarpsWorld extends World {
             music.playLoop();
         }
     }
-
     public void stopped() {
         music.pause();
     }
@@ -73,12 +71,5 @@ public class GarpsWorld extends World {
         int y = Greenfoot.getRandomNumber(getHeight()-55)+20;
         addObject(obj, x, y);
     }
-
-    /**
-     * Prepare the world for the start of the program.
-     * That is: create the initial objects and add them to the world.
-     */
-    private void prepare()
-    {
-    }
+    
 }

@@ -32,8 +32,8 @@ public class GameOverWindow extends TextToImage {
     
     public boolean isGameOver() {
         if (getWorld().getObjects(Garp.class).get(0).isDead() == true
-        || getWorld().getObjects(GemScore.class).get(0).returnScore() == 10
-        || getWorld().getObjects(Gnomus.class).get(0).isGnomusDead() == true) {
+        || getWorld().getObjects(Gnomus.class).get(0).isGnomusDead() == true
+        || getWorld().getObjects(GemScore.class).get(0).returnScore() == 10) {
             return true;
         }
         else {return false;}
@@ -57,49 +57,42 @@ public class GameOverWindow extends TextToImage {
         if (victory == true) {gameOverMessage = "Garp is victorious!";}
         else {gameOverMessage = "Garp died.";}
         
-        //set background
+        //set image background
         GreenfootImage background = new GreenfootImage(475, 300);
         if (victory == true) {background.setColor(new Color(0, 255, 100));}
         else {background.setColor(new Color(255, 0, 100));}
         background.setTransparency(75);
         background.fillRect(0, 0, 475, 300);
         image.drawImage(background, 0, 0);
-        
-        //set text variables
-        String text1 = elapsedTime();
-        String text2 = "Gems collected: "+ score;
-        String text3 = gameOverMessage;
-        String text4 = randomJoke();
-        
-        //set dimensions
         image.scale(475, 300);
-        image.setFont(new Font("Arial", Font.BOLD, 20));
-        Dimension dim1 = getTextDimensions(image, text1);
-        Dimension dim2 = getTextDimensions(image, text2);
-        image.setFont(new Font("Arial", Font.BOLD, 48));
-        Dimension dim3 = getTextDimensions(image, text3);
-        image.setFont(new Font("Arial", Font.BOLD, 16));
-        Dimension dim4 = getTextDimensions(image, text4);
         
         /*----------* draw strings into image *----------*/
         image.setFont(new Font("Arial", Font.BOLD, 20));
+        String text1 = elapsedTime();
+        Dimension dim1 = getTextDimensions(image, text1);
         image.setColor(new Color(200, 200, 200));
         image.drawString(text1, image.getWidth()/2-(int)(dim1.getWidth()/2)+1, image.getHeight()/2-79);
         image.setColor(new Color(0, 0, 0));
         image.drawString(text1, image.getWidth()/2-(int)(dim1.getWidth()/2), image.getHeight()/2-80);
         
+        String text2 = "Gems collected: "+ score;
+        Dimension dim2 = getTextDimensions(image, text2);
         image.setColor(new Color(200, 200, 200));
         image.drawString(text2, image.getWidth()/2-(int)(dim2.getWidth()/2)+1, image.getHeight()/2-49);
         image.setColor(new Color(0, 0, 0));
         image.drawString(text2, image.getWidth()/2-(int)(dim2.getWidth()/2), image.getHeight()/2-50);
         
         image.setFont(new Font("Arial", Font.BOLD, 48));
+        String text3 = gameOverMessage;
+        Dimension dim3 = getTextDimensions(image, text3);
         image.drawString(text3, image.getWidth()/2-(int)(dim3.getWidth()/2)+1, image.getHeight()/2+11);
         if (victory == true) {image.setColor(new Color(100, 255, 0));}
         else {image.setColor(new Color(255, 100, 0));}
         image.drawString(text3, image.getWidth()/2-(int)(dim3.getWidth()/2)-1, image.getHeight()/2+9);
         
         image.setFont(new Font("Arial", Font.BOLD, 16));
+        String text4 = randomJoke();
+        Dimension dim4 = getTextDimensions(image, text4);
         image.setColor(new Color(200, 200, 200));
         image.drawString(text4, image.getWidth()/2-(int)(dim4.getWidth()/2)+1, image.getHeight()/2+76);
         image.setColor(new Color(0, 0, 0));
@@ -139,7 +132,6 @@ public class GameOverWindow extends TextToImage {
             else {text = victoryJoke[(int)(Math.random()*victoryJoke.length)];}
         }
         else {text = failureJoke[(int)(Math.random()*failureJoke.length)];}
-        
         return text;
     }
     

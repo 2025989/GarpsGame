@@ -25,21 +25,11 @@ public class Gnomus extends Actor {
     protected void rotate() {
         int dx = 0;
         int dy = 0;
-        int distanceGarp = distance(
-            getWorld().getObjects(Garp.class).get(0).getX()-getX(),
-            getWorld().getObjects(Garp.class).get(0).getY()-getY()
-        );
-        int distanceGoarp = distance(
-            getWorld().getObjects(Goarp.class).get(0).getX()-getX(),
-            getWorld().getObjects(Goarp.class).get(0).getY()-getY()
-        );
-        if ((distanceGarp < distanceGoarp && getWorld().getObjects(Garp.class).get(0).isGarpDead() == false)
-        || (getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == true)) {
+        if (target() == "Garp") {
             dx = getWorld().getObjects(Garp.class).get(0).getX()-getX();
             dy = getWorld().getObjects(Garp.class).get(0).getY()-getY();
         }
-        if ((distanceGarp > distanceGoarp && getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == false)
-        || (getWorld().getObjects(Garp.class).get(0).isGarpDead() == true)) {
+        if (target() == "Goarp") {
             dx = getWorld().getObjects(Goarp.class).get(0).getX()-getX();
             dy = getWorld().getObjects(Goarp.class).get(0).getY()-getY();
         }
@@ -55,9 +45,17 @@ public class Gnomus extends Actor {
     }
     
     protected boolean objectCollision() {
-        int dx = getWorld().getObjects(Garp.class).get(0).getX()-getX();
-        int dy = getWorld().getObjects(Garp.class).get(0).getY()-getY();
-        
+        int dx = 0;
+        int dy = 0;
+        if (target() == "Garp") {
+            dx = getWorld().getObjects(Garp.class).get(0).getX()-getX();
+            dy = getWorld().getObjects(Garp.class).get(0).getY()-getY();
+        }
+        if (target() == "Goarp") {
+            dx = getWorld().getObjects(Goarp.class).get(0).getX()-getX();
+            dy = getWorld().getObjects(Goarp.class).get(0).getY()-getY();
+        }
+
         Actor obj = getOneObjectAtOffset(0, 0, Actor.class);
         if (obj != null) {
             if ((dx > 0 && dy < 0) && (getRotation() == 315 || getRotation() == 0)) {setRotation(270);}
@@ -73,9 +71,29 @@ public class Gnomus extends Actor {
         else {return false;}
     }
     
+    protected String target() {
+        String target = "";
+        int distanceGarp = distance(
+            getWorld().getObjects(Garp.class).get(0).getX()-getX(),
+            getWorld().getObjects(Garp.class).get(0).getY()-getY()
+        );
+        int distanceGoarp = distance(
+            getWorld().getObjects(Goarp.class).get(0).getX()-getX(),
+            getWorld().getObjects(Goarp.class).get(0).getY()-getY()
+        );
+        if ((distanceGarp < distanceGoarp && getWorld().getObjects(Garp.class).get(0).isGarpDead() == false)
+        || (getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == true)) {
+            target = "Garp";
+        }
+        if ((distanceGarp > distanceGoarp && getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == false)
+        || (getWorld().getObjects(Garp.class).get(0).isGarpDead() == true)) {
+            target = "Goarp";
+        }
+        return target;
+    }
+    
     protected int distance(int dx, int dy) {
         int distance = (int)(Math.sqrt((dx*dx)+(dy*dy)));
-        
         return distance;
     }
     

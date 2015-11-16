@@ -13,7 +13,6 @@ public class Garp extends Actor {
     private GreenfootSound gemSound = new GreenfootSound("Rupee.wav");
     public boolean isGarpDead = false;
     GreenfootImage noImg = new GreenfootImage(1, 1);
-            
     
     public Garp() {
         setImage(imageRight);
@@ -32,31 +31,24 @@ public class Garp extends Actor {
             collectingGems();
             checkExploded();
             checkMurdered();
+            checkGoarpCollision();
         }
     }
     
     protected void movement() {
-        if (Greenfoot.isKeyDown("D")) {
-            setImage(imageRight);
-            setRotation(0);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("A")) {
-            setImage(imageLeft);
-            setRotation(180);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("W")) {
-            setImage(imageRight);
-            setRotation(270);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("S")) {
-            setImage(imageRight);
-            setRotation(90);
+        if (Greenfoot.isKeyDown("D")) {setRotation(0);}
+        if (Greenfoot.isKeyDown("A")) {setRotation(180);}
+        if (Greenfoot.isKeyDown("W")) {setRotation(270);}
+        if (Greenfoot.isKeyDown("S")) {setRotation(90);}
+        if (Greenfoot.isKeyDown("W") && Greenfoot.isKeyDown("D")) {setRotation(315);}
+        if (Greenfoot.isKeyDown("W") && Greenfoot.isKeyDown("A")) {setRotation(225);}
+        if (Greenfoot.isKeyDown("S") && Greenfoot.isKeyDown("D")) {setRotation(45);}
+        if (Greenfoot.isKeyDown("S") && Greenfoot.isKeyDown("A")) {setRotation(135);}
+        
+        if (Greenfoot.isKeyDown("D") || Greenfoot.isKeyDown("A")
+        || Greenfoot.isKeyDown("W") || Greenfoot.isKeyDown("S")) {
+            if (Greenfoot.isKeyDown("A")) {setImage(imageLeft);}
+            else {setImage(imageRight);}
             move(5);
             if (foundRock() || atWorldEdge()) {move(-5);}
         }
@@ -105,6 +97,14 @@ public class Garp extends Actor {
             setImage(noImg);
             if (getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == true) {Greenfoot.stop();}
             isGarpDead = true;
+        }
+    }
+    public void checkGoarpCollision() {
+        Actor goarp = getOneObjectAtOffset(0, 0, Goarp.class);
+        if (goarp != null && getWorld().getObjects(Goarp.class).get(0).isGoarpDead() == false) {
+            isGarpDead = true;
+            getWorld().getObjects(Goarp.class).get(0).isGoarpDead = true;
+            Greenfoot.stop();
         }
     }
     public boolean isGarpDead() {

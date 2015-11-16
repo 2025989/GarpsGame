@@ -34,27 +34,19 @@ public class Garp extends Actor {
     }
     
     protected void movement() {
-        if (Greenfoot.isKeyDown("right")) {
-            setImage(imageRight);
-            setRotation(0);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("left")) {
-            setImage(imageLeft);
-            setRotation(180);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("up")) {
-            setImage(imageRight);
-            setRotation(270);
-            move(5);
-            if (foundRock() || atWorldEdge()) {move(-5);}
-        }
-        if (Greenfoot.isKeyDown("down")) {
-            setImage(imageRight);
-            setRotation(90);
+        if (Greenfoot.isKeyDown("D")) {setRotation(0);}
+        if (Greenfoot.isKeyDown("A")) {setRotation(180);}
+        if (Greenfoot.isKeyDown("W")) {setRotation(270);}
+        if (Greenfoot.isKeyDown("S")) {setRotation(90);}
+        if (Greenfoot.isKeyDown("W") && Greenfoot.isKeyDown("D")) {setRotation(315);}
+        if (Greenfoot.isKeyDown("W") && Greenfoot.isKeyDown("A")) {setRotation(225);}
+        if (Greenfoot.isKeyDown("S") && Greenfoot.isKeyDown("D")) {setRotation(45);}
+        if (Greenfoot.isKeyDown("S") && Greenfoot.isKeyDown("A")) {setRotation(135);}
+        
+        if (Greenfoot.isKeyDown("D") || Greenfoot.isKeyDown("A")
+        || Greenfoot.isKeyDown("W") || Greenfoot.isKeyDown("S")) {
+            if (Greenfoot.isKeyDown("A")) {setImage(imageLeft);}
+            else {setImage(imageRight);}
             move(5);
             if (foundRock() || atWorldEdge()) {move(-5);}
         }
