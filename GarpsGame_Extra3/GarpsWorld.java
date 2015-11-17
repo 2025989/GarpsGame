@@ -39,7 +39,7 @@ public class GarpsWorld extends World {
         addObject(new GameOverWindow(), getWidth()/2, getHeight()/2);
         randomlyPlaceObjectLeft(new Garp());
         randomlyPlaceObjectRight(new Goarp());
-        randomlyPlaceObject(new Gnomus());
+        addObject(new Gnomus(), getWidth()/2, getHeight()/2);
         for (int i = 0; i < 10; i++) {
             if (i < 10) {randomlyPlaceObject(new Gem());}
             if (i < 06) {randomlyPlaceObject(new Rock());}
@@ -50,25 +50,50 @@ public class GarpsWorld extends World {
             GarpGemScore.class, GoarpGemScore.class, GameOverWindow.class,
             Explosion.class,
             Garp.class, Goarp.class, Gnomus.class,
-            Gem.class, Bomb.class, Rock.class
+            Gem.class, Bomb.class, Rock.class,
+            Ghost.class
         );
     }
 
     protected void randomlyPlaceObject(Actor obj) {
         int x = Greenfoot.getRandomNumber(getWidth()-40)+20;
         int y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+        addObject(new Ghost(), x, y);
+        while (getObjects(Ghost.class).get(0).collision() == true) {
+            removeObject(getObjects(Ghost.class).get(0));
+            x = Greenfoot.getRandomNumber(getWidth()-40)+20;
+            y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+            addObject(new Ghost(), x, y);
+        }
+        removeObject(getObjects(Ghost.class).get(0));
         addObject(obj, x, y);
     }
 
     protected void randomlyPlaceObjectLeft(Actor obj) {
         int x = Greenfoot.getRandomNumber(getWidth()/2-20)+20;
         int y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+        addObject(new Ghost(), x, y);
+        while (getObjects(Ghost.class).get(0).collision() == true) {
+            removeObject(getObjects(Ghost.class).get(0));
+            x = Greenfoot.getRandomNumber(getWidth()/2-20)+20;
+            y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+            addObject(new Ghost(), x, y);
+        }
+        removeObject(getObjects(Ghost.class).get(0));
         addObject(obj, x, y);
     }
 
     protected void randomlyPlaceObjectRight(Actor obj) {
         int x = Greenfoot.getRandomNumber(getWidth()/2-20)+getWidth()/2;
         int y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+        addObject(new Ghost(), x, y);
+        while (getObjects(Ghost.class).get(0).collision() == true) {
+            removeObject(getObjects(Ghost.class).get(0));
+            x = Greenfoot.getRandomNumber(getWidth()/2-20)+getWidth()/2;
+            y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+            addObject(new Ghost(), x, y);
+        }
+        removeObject(getObjects(Ghost.class).get(0));
         addObject(obj, x, y);
     }
     

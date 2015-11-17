@@ -48,13 +48,22 @@ public class GarpsWorld extends World {
             GemScore.class, GameOverWindow.class,
             Explosion.class,
             Garp.class, Gnomus.class,
-            Gem.class, Bomb.class, Rock.class
+            Gem.class, Bomb.class, Rock.class,
+            Ghost.class
         );
     }
     
     protected void randomlyPlaceObject(Actor obj) {
         int x = Greenfoot.getRandomNumber(getWidth()-40)+20;
         int y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+        addObject(new Ghost(), x, y);
+        while (getObjects(Ghost.class).get(0).collision() == true) {
+            removeObject(getObjects(Ghost.class).get(0));
+            x = Greenfoot.getRandomNumber(getWidth()-40)+20;
+            y = Greenfoot.getRandomNumber(getHeight()-55)+20;
+            addObject(new Ghost(), x, y);
+        }
+        removeObject(getObjects(Ghost.class).get(0));
         addObject(obj, x, y);
     }
     
