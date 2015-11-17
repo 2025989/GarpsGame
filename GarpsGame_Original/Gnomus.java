@@ -41,7 +41,7 @@ public class Gnomus extends Actor {
     }
     
     protected void rotate() {
-         setRotation(getRotation()-180+Greenfoot.getRandomNumber(360));
+        setRotation(getRotation()-180+Greenfoot.getRandomNumber(360));
     }
     
     protected void objectCollision() {
