@@ -39,9 +39,6 @@ public class GoarpGemScore extends TextToImage {
         image.setColor(new Color(150, 0, 125));
         image.drawString(scoreText, 0, dim.height);
         setImage(image);
-        
-        //stop game if won
-        if (goarpScore == 10) {Greenfoot.stop();}
     }
     
     public int returnGoarpScore() {

@@ -39,9 +39,6 @@ public class GarpGemScore extends TextToImage {
         image.setColor(new Color(0, 100, 50));
         image.drawString(scoreText, 0, dim.height);
         setImage(image);
-        
-        //stop game if won
-        if (garpScore == 10) {Greenfoot.stop();}
     }
     
     public int returnGarpScore() {

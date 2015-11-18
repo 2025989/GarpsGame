@@ -23,6 +23,11 @@ public class GameOverWindow extends TextToImage {
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act() {
+        if (stopped == false
+        && getWorld().getObjects(GarpGemScore.class).get(0).returnGarpScore()
+        + getWorld().getObjects(GoarpGemScore.class).get(0).returnGoarpScore() == 10) {
+            Greenfoot.stop();
+        }
         if (stopped == false && isGameOver() == true) {
             stopped = true;
             drawGameOverWindow();
